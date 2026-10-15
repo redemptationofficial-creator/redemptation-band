@@ -1,50 +1,151 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>REDEMPTATION — музыкальные посвящения</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <header>
-    <img src="images/logo.png" alt="REDEMPTATION" class="logo">
-    <h1>REDEMPTATION</h1>
-    <p class="tagline">Мы не пишем песни на заказ. Мы создаём музыкальные посвящения.</p>
-  </header>
+const redemptationTracks = [
+  { title: "Redemptation", file: "a3f9c2.mp3" },
+  { title: "The Only One Who Stayed", file: "b7e1d4.mp3" },
+  { title: "Angela", file: "c5a8f0.mp3" },
+  { title: "Tamara", file: "d2b6e9.mp3" },
+  { title: "RUSSIA", file: "e8c3a1.mp3" },
+  { title: "Out of the Gray Storm", file: "f4d7b2.mp3" },
+  { title: "Thank you", file: "1a9e5c.mp3" },
+  { title: "Two Brothers", file: "2b8f6d.mp3" },
+  { title: "The Demon", file: "3c7a4e.mp3" },
+  { title: "The Scar", file: "4d6b9f.mp3" },
+  { title: "London, I Am Your Son", file: "5e5c8a.mp3" },
+  { title: "Home", file: "6f4d7b.mp3" },
+  { title: "Together", file: "7a3e2c.mp3" },
+  { title: "Angela (Russian Version)", file: "8b1f9d.mp3" },
+  { title: "KARDASH", file: "9c0a6e.mp3" },
+  { title: "Out of the Gray Storm (Russian Version)", file: "0d9b5f.mp3" }
+];
 
-  <section id="about">
-    <h2>О нас</h2>
-    <p>Мы — творческий коллектив единомышленников. Нас объединяет стиль и любовь к музыке. Каждая наша песня — это отдельная история. Мы не пишем песни на заказ, но можем создать для вас уникальное музыкальное посвящение — если ваша история отзовётся в нас.</p>
-    <p>Наша команда работает удалённо: участники живут в разных городах и странах. Именно поэтому мы пока не даём концертов.</p>
-  </section>
+const quintetTracks = [
+  { title: "Ту-144", file: "a1b2c3.mp3" },
+  { title: "Полёт", file: "d4e5f6.mp3" },
+  { title: "Цыганская плясовая", file: "g7h8i9.mp3" },
+  { title: "Над горизонтом", file: "j0k1l2.mp3" }
+];
 
-  <section id="tracks">
-    <h2>Альбом «Redemption» (2026)</h2>
-    <div id="track-list"></div>
-  </section>
+const bandMembers = [
+  { name: "Михаил Матвеев", role: "Основатель, гитара", img: "images/band/mikhail.jpg" },
+  { name: "Michael Matthew", role: "Вокал", img: "images/band/michael.jpg" },
+  { name: "Алексей «Лёха» Ветров", role: "Соло-гитара", img: "images/band/lyokha.jpg" },
+  { name: "Дмитрий «Дима» Сталь", role: "Ритм-гитара", img: "images/band/stal.jpg" },
+  { name: "Сергей «Серж» Волков", role: "Бас-гитара", img: "images/band/serzh.jpg" },
+  { name: "Андрей «Драйв» Ковалёв", role: "Барабаны", img: "images/band/draiv.jpg" },
+  { name: "Екатерина «Катя» Соболева", role: "Виолончель", img: "images/band/katya.jpg" },
+  { name: "Артём «Тёмный» Лебедев", role: "Клавиши", img: "images/band/tyomny.jpg" }
+];
 
-  <section id="quintet">
-    <h2>Экспромт-квинтет</h2>
-    <div id="quintet-list"></div>
-  </section>
+const quintetMembers = [
+  { name: "Илья Матвеев", role: "Домра", img: "images/quintet/ilya.jpg" },
+  { name: "Андрей Демидов", role: "Балалайка", img: "images/quintet/demidov.jpg" },
+  { name: "Сергей Погурцев", role: "Баян", img: "images/quintet/pogurtsev.jpg" },
+  { name: "Константин Ильгин", role: "Гитара", img: "images/quintet/ilgin.jpg" },
+  { name: "Гай Давтян", role: "Контрабас", img: "images/quintet/davtyan.jpg" }
+];
 
-  <section id="band">
-    <h2>Состав</h2>
-    <div id="band-list"></div>
-  </section>
+let currentAudio = null;
+let currentButton = null;
 
-  <section id="contact">
-    <h2>Связь</h2>
-    <p>Мы работаем с юридическими лицами и индивидуальными предпринимателями. Предоставляем полный пакет закрывающих документов. Все детали сотрудничества обсуждаются индивидуально при заключении договора.</p>
-    <p>Email: <a href="mailto:redemptation.official@gmail.com">redemptation.official@gmail.com</a></p>
-    <p>Boosty: <a href="https://boosty.to/REDEMPTATION" target="_blank">boosty.to/REDEMPTATION</a></p>
-  </section>
+function createTrackElement(track, folder) {
+  const div = document.createElement('div');
+  div.className = 'track';
+  
+  const title = document.createElement('div');
+  title.className = 'track-title';
+  title.innerHTML = `<span>▶</span> ${track.title}`;
+  
+  const btn = document.createElement('button');
+  btn.className = 'play-btn';
+  btn.textContent = 'Слушать';
+  
+  btn.addEventListener('click', () => {
+    if (currentAudio) {
+      currentAudio.pause();
+      currentAudio = null;
+      if (currentButton) {
+        currentButton.textContent = 'Слушать';
+        currentButton.disabled = false;
+      }
+    }
+    
+    if (currentButton === btn) {
+      currentButton = null;
+      return;
+    }
+    
+    btn.textContent = 'Загрузка...';
+    btn.disabled = true;
+    
+    const audioUrl = folder + track.file;
+    
+    fetch(audioUrl)
+      .then(response => response.blob())
+      .then(blob => {
+        const blobUrl = URL.createObjectURL(blob);
+        const audio = new Audio(blobUrl);
+        
+        audio.addEventListener('ended', () => {
+          btn.textContent = 'Слушать';
+          btn.disabled = false;
+          currentAudio = null;
+          currentButton = null;
+        });
+        
+        audio.play();
+        currentAudio = audio;
+        currentButton = btn;
+        btn.textContent = 'Играет...';
+        btn.disabled = false;
+      })
+      .catch(err => {
+        console.error('Ошибка загрузки:', err);
+        btn.textContent = 'Ошибка';
+        btn.disabled = false;
+      });
+  });
+  
+  div.appendChild(title);
+  div.appendChild(btn);
+  return div;
+}
 
-  <footer>
-    <p>REDEMPTATION © 2026. Творческий коллектив. Работаем удалённо. Детали не комментируем.</p>
-  </footer>
+function createMemberCard(member) {
+  const div = document.createElement('div');
+  div.className = 'band-member';
+  
+  const img = document.createElement('img');
+  img.src = member.img;
+  img.alt = member.name;
+  
+  const name = document.createElement('p');
+  name.innerHTML = `<strong>${member.name}</strong><br>${member.role}`;
+  
+  div.appendChild(img);
+  div.appendChild(name);
+  return div;
+}
 
-  <script src="songs.js"></script>
-</body>
-</html>
+function renderAll() {
+  const trackList = document.getElementById('track-list');
+  redemptationTracks.forEach(track => {
+    trackList.appendChild(createTrackElement(track, 'audio/previews/'));
+  });
+  
+  const quintetList = document.getElementById('quintet-list');
+  quintetTracks.forEach(track => {
+    quintetList.appendChild(createTrackElement(track, 'audio/quintet/'));
+  });
+  
+  const bandList = document.getElementById('band-list');
+  bandMembers.forEach(member => {
+    bandList.appendChild(createMemberCard(member));
+  });
+  
+  const quintetPhotos = document.getElementById('quintet-photos');
+  quintetMembers.forEach(member => {
+    quintetPhotos.appendChild(createMemberCard(member));
+  });
+}
+
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('DOMContentLoaded', renderAll);
