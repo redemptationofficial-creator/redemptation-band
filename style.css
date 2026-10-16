@@ -8,49 +8,156 @@ body {
   background: #0a0a0c;
   color: #e0e0e0;
   font-family: 'Arial', sans-serif;
-  line-height: 1.6;
+  line-height: 1.7;
   padding: 20px;
 }
 
-header {
+/* ---------- HERO ---------- */
+header.hero {
   text-align: center;
-  padding: 40px 20px;
+  padding: 40px 20px 60px;
   background: linear-gradient(180deg, #0a0a0c 0%, #141418 100%);
   border-bottom: 1px solid #2a2a2e;
 }
 
 .logo {
-  max-width: 300px;
-  margin-bottom: 20px;
+  max-width: 280px;
+  width: 100%;
+  margin-bottom: 10px;
+  mix-blend-mode: screen;
 }
 
 h1 {
-  font-size: 2.5rem;
-  letter-spacing: 4px;
+  font-size: 2.8rem;
+  letter-spacing: 8px;
   color: #d4af37;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+  text-transform: uppercase;
 }
 
 .tagline {
-  font-size: 1.1rem;
-  color: #888;
+  font-size: 1.15rem;
+  color: #999;
   font-style: italic;
+  margin-bottom: 40px;
+  line-height: 1.6;
 }
 
+.album-cover {
+  max-width: 320px;
+  width: 100%;
+  border-radius: 8px;
+  margin: 20px auto;
+  display: block;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.7);
+}
+
+.album-title {
+  color: #d4af37;
+  font-size: 1.1rem;
+  letter-spacing: 3px;
+  margin-top: 15px;
+  text-transform: uppercase;
+}
+
+/* ---------- SECTIONS ---------- */
 section {
   max-width: 900px;
-  margin: 40px auto;
+  margin: 60px auto;
   padding: 0 20px;
 }
 
 h2 {
-  font-size: 1.8rem;
+  font-size: 2.2rem;
   color: #d4af37;
-  margin-bottom: 20px;
-  border-left: 3px solid #d4af37;
-  padding-left: 15px;
+  margin-bottom: 10px;
+  text-align: center;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  font-weight: bold;
+  position: relative;
+  padding-bottom: 20px;
 }
 
+h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 2px;
+  background: #d4af37;
+}
+
+.section-subtitle {
+  text-align: center;
+  color: #888;
+  font-style: italic;
+  margin-bottom: 30px;
+  font-size: 1rem;
+}
+
+#band h2 {
+  font-size: 3rem;
+  letter-spacing: 12px;
+  text-shadow: 0 0 25px rgba(212, 175, 55, 0.35);
+}
+
+#quintet h2 {
+  font-size: 2.4rem;
+  letter-spacing: 8px;
+}
+
+#quintet h2::before {
+  content: "🎻";
+  display: block;
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+  filter: grayscale(100%) brightness(1.4);
+}
+
+section p {
+  margin-bottom: 15px;
+  color: #ccc;
+}
+
+section p strong {
+  color: #d4af37;
+}
+
+/* ---------- ANGELA ---------- */
+.angela-block {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.angela-photo {
+  max-width: 220px;
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+.angela-text {
+  flex: 1;
+  min-width: 260px;
+}
+
+/* ---------- QUINTET ---------- */
+.quintet-group {
+  max-width: 400px;
+  width: 100%;
+  border-radius: 8px;
+  display: block;
+  margin: 30px auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+/* ---------- TRACKS ---------- */
 .track {
   display: flex;
   align-items: center;
@@ -85,6 +192,7 @@ button.play-btn {
   cursor: pointer;
   font-weight: bold;
   transition: background 0.3s;
+  font-size: 0.9rem;
 }
 
 button.play-btn:hover {
@@ -97,25 +205,13 @@ button.play-btn:disabled {
   cursor: not-allowed;
 }
 
-.boosty-link {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 12px 24px;
-  background: #d4af37;
-  color: #0a0a0c;
-  text-decoration: none;
-  border-radius: 4px;
-  font-weight: bold;
-}
-
-.boosty-link:hover {
-  background: #e6c44a;
-}
-
-#band-list {
+/* ---------- BAND & QUINTET GRIDS ---------- */
+#band-list,
+.quintet-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 20px;
+  margin-top: 30px;
 }
 
 .band-member {
@@ -126,19 +222,39 @@ button.play-btn:disabled {
   width: 100%;
   border-radius: 6px;
   margin-bottom: 10px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
 }
 
 .band-member p {
   color: #ccc;
   font-size: 0.9rem;
+  line-height: 1.4;
 }
 
+.band-member p strong {
+  color: #d4af37;
+  font-size: 0.95rem;
+}
+
+/* ---------- FINE PRINT (AVATARS) ---------- */
+.fine-print {
+  color: #555;
+  font-size: 0.8rem;
+  text-align: center;
+  max-width: 700px;
+  margin: 40px auto 0;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+/* ---------- FOOTER ---------- */
 footer {
   text-align: center;
   padding: 30px;
   color: #555;
   font-size: 0.9rem;
   border-top: 1px solid #1a1a1e;
+  margin-top: 60px;
 }
 
 a {
@@ -150,7 +266,12 @@ a:hover {
   text-decoration: underline;
 }
 
+/* ---------- MOBILE ---------- */
 @media (max-width: 600px) {
-  h1 { font-size: 1.8rem; }
+  h1 { font-size: 2rem; letter-spacing: 4px; }
+  #band h2 { font-size: 2.2rem; letter-spacing: 6px; }
+  h2 { font-size: 1.6rem; letter-spacing: 3px; }
   .logo { max-width: 200px; }
+  .angela-block { flex-direction: column; }
+  .angela-photo { max-width: 100%; }
 }
