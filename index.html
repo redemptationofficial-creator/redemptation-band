@@ -1,151 +1,81 @@
-const redemptationTracks = [
-  { title: "Redemptation", file: "a3f9c2.mp3" },
-  { title: "The Only One Who Stayed", file: "b7e1d4.mp3" },
-  { title: "Angela", file: "c5a8f0.mp3" },
-  { title: "Tamara", file: "d2b6e9.mp3" },
-  { title: "RUSSIA", file: "e8c3a1.mp3" },
-  { title: "Out of the Gray Storm", file: "f4d7b2.mp3" },
-  { title: "Thank you", file: "1a9e5c.mp3" },
-  { title: "Two Brothers", file: "2b8f6d.mp3" },
-  { title: "The Demon", file: "3c7a4e.mp3" },
-  { title: "The Scar", file: "4d6b9f.mp3" },
-  { title: "London, I Am Your Son", file: "5e5c8a.mp3" },
-  { title: "Home", file: "6f4d7b.mp3" },
-  { title: "Together", file: "7a3e2c.mp3" },
-  { title: "Angela (Russian Version)", file: "8b1f9d.mp3" },
-  { title: "KARDASH", file: "9c0a6e.mp3" },
-  { title: "Out of the Gray Storm (Russian Version)", file: "0d9b5f.mp3" }
-];
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>REDEMPTATION — музыкальные посвящения</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-const quintetTracks = [
-  { title: "Ту-144", file: "a1b2c3.mp3" },
-  { title: "Полёт", file: "d4e5f6.mp3" },
-  { title: "Цыганская плясовая", file: "g7h8i9.mp3" },
-  { title: "Над горизонтом", file: "j0k1l2.mp3" }
-];
+  <header class="hero">
+    <img src="images/logo.png" alt="REDEMPTATION" class="logo">
+    <h1>REDEMPTATION</h1>
+    <p class="tagline">Мы не пишем песни на заказ.<br>Мы создаём музыкальные посвящения.</p>
+    <img src="images/album_cover.jpg" alt="Redemption (2026)" class="album-cover">
+    <p class="album-title">Альбом «Redemption» (2026)</p>
+  </header>
 
-const bandMembers = [
-  { name: "Михаил Матвеев", role: "Основатель, гитара", img: "images/band/mikhail.jpg" },
-  { name: "Michael Matthew", role: "Вокал", img: "images/band/michael.jpg" },
-  { name: "Алексей «Лёха» Ветров", role: "Соло-гитара", img: "images/band/lyokha.jpg" },
-  { name: "Дмитрий «Дима» Сталь", role: "Ритм-гитара", img: "images/band/stal.jpg" },
-  { name: "Сергей «Серж» Волков", role: "Бас-гитара", img: "images/band/serzh.jpg" },
-  { name: "Андрей «Драйв» Ковалёв", role: "Барабаны", img: "images/band/draiv.jpg" },
-  { name: "Екатерина «Катя» Соболева", role: "Виолончель", img: "images/band/katya.jpg" },
-  { name: "Артём «Тёмный» Лебедев", role: "Клавиши", img: "images/band/tyomny.jpg" }
-];
+  <section id="about">
+    <h2>О нас</h2>
+    <p>Мы — творческий коллектив единомышленников. Нас объединяет стиль и любовь к музыке.</p>
+    <p>Каждая наша песня — это отдельная история. История, которая произошла с кем-то из нас. Или с кем-то другим — но мы её услышали, пропустили через себя и рассказали в музыке.</p>
+    <p>Мы не пишем песни на заказ. Но мы можем создать для вас уникальное музыкальное посвящение — если ваша история отзовётся в нас так же сильно, как отозвалась бы наша собственная.</p>
+    <p><strong>Почему мы работаем удалённо.</strong> Наша команда работает удалённо. Не потому, что мы что-то скрываем — а потому, что участники живут в разных городах и даже странах. Санкт-Петербург, Москва, Минск, Лондон — нас разделяют тысячи километров, но объединяет одно: музыка. Именно по этой причине мы пока не даём концертов. Но это не мешает нам создавать то, что трогает сердца.</p>
+    <p><strong>О личном.</strong> Всю необходимую информацию о нас мы дали. Всё остальное — личная жизнь, которая не подлежит комментариям.</p>
+  </section>
 
-const quintetMembers = [
-  { name: "Илья Матвеев", role: "Домра", img: "images/quintet/ilya.jpg" },
-  { name: "Андрей Демидов", role: "Балалайка", img: "images/quintet/demidov.jpg" },
-  { name: "Сергей Погурцев", role: "Баян", img: "images/quintet/pogurtsev.jpg" },
-  { name: "Константин Ильгин", role: "Гитара", img: "images/quintet/ilgin.jpg" },
-  { name: "Гай Давтян", role: "Контрабас", img: "images/quintet/davtyan.jpg" }
-];
+  <section id="name">
+    <h2>Почему REDEMPTATION</h2>
+    <p>Изначально проект должен был называться просто <strong>Redemption</strong> — «Искупление». Это слово точно отражало суть: путь от падения к возрождению, от боли к свету.</p>
+    <p>Но когда к проекту присоединился Michael Matthew — наш вокалист из Лондона — он предложил другое имя. Он соединил два слова: <strong>Redemption</strong> (Искупление) и <strong>Temptation</strong> (Искушение).</p>
+    <p>Так родилось <strong>REDEMPTATION</strong> — неологизм, в котором живут обе силы: свет и тьма, выбор и соблазн, падение и восстание. Это имя точнее отражает то, о чём мы поём.</p>
+    <p>Название предложил Майкл. Мы приняли его единогласно.</p>
+  </section>
 
-let currentAudio = null;
-let currentButton = null;
+  <section id="angela">
+    <h2>Анжела — Хранитель смысла</h2>
+    <div class="angela-block">
+      <img src="images/angela.jpg" alt="Анжела" class="angela-photo">
+      <div class="angela-text">
+        <p>В реальной жизни Анжела не может жить той жизнью, которую хотела бы. Но в проекте REDEMPTATION она — арт-директор. Она видит, слышит, решает. Её аватар — не маскировка. Это её выбор. Это её свобода.</p>
+        <p>Она слышит то, что не слышат другие. Её чувство правды — компас проекта. Если песня не трогает её сердце — она не трогает никого. Без её одобрения не выходит ни один релиз.</p>
+        <p>Песня «Анжела» посвящена ей. И это — самая личная песня проекта. Больше мы ничего не скажем. Это наша семья. Это наше право.</p>
+      </div>
+    </div>
+  </section>
 
-function createTrackElement(track, folder) {
-  const div = document.createElement('div');
-  div.className = 'track';
-  
-  const title = document.createElement('div');
-  title.className = 'track-title';
-  title.innerHTML = `<span>▶</span> ${track.title}`;
-  
-  const btn = document.createElement('button');
-  btn.className = 'play-btn';
-  btn.textContent = 'Слушать';
-  
-  btn.addEventListener('click', () => {
-    if (currentAudio) {
-      currentAudio.pause();
-      currentAudio = null;
-      if (currentButton) {
-        currentButton.textContent = 'Слушать';
-        currentButton.disabled = false;
-      }
-    }
-    
-    if (currentButton === btn) {
-      currentButton = null;
-      return;
-    }
-    
-    btn.textContent = 'Загрузка...';
-    btn.disabled = true;
-    
-    const audioUrl = folder + track.file;
-    
-    fetch(audioUrl)
-      .then(response => response.blob())
-      .then(blob => {
-        const blobUrl = URL.createObjectURL(blob);
-        const audio = new Audio(blobUrl);
-        
-        audio.addEventListener('ended', () => {
-          btn.textContent = 'Слушать';
-          btn.disabled = false;
-          currentAudio = null;
-          currentButton = null;
-        });
-        
-        audio.play();
-        currentAudio = audio;
-        currentButton = btn;
-        btn.textContent = 'Играет...';
-        btn.disabled = false;
-      })
-      .catch(err => {
-        console.error('Ошибка загрузки:', err);
-        btn.textContent = 'Ошибка';
-        btn.disabled = false;
-      });
-  });
-  
-  div.appendChild(title);
-  div.appendChild(btn);
-  return div;
-}
+  <section id="tracks">
+    <h2>Альбом «Redemption» (2026)</h2>
+    <p class="section-subtitle">Шестнадцать треков. Шестнадцать историй.</p>
+    <div id="track-list"></div>
+  </section>
 
-function createMemberCard(member) {
-  const div = document.createElement('div');
-  div.className = 'band-member';
-  
-  const img = document.createElement('img');
-  img.src = member.img;
-  img.alt = member.name;
-  
-  const name = document.createElement('p');
-  name.innerHTML = `<strong>${member.name}</strong><br>${member.role}`;
-  
-  div.appendChild(img);
-  div.appendChild(name);
-  return div;
-}
+  <section id="quintet">
+    <h2>Экспромт-квинтет</h2>
+    <p class="section-subtitle">Отдельный блок. Живые инструменты. Настоящая душа.</p>
+    <p>Домра. Балалайка. Баян. Контрабас. Гитара. Настоящие инструменты, настоящие руки, настоящая душа. Когда клиент слышит живые инструменты в сочетании с мощным электронным звучанием — вопросов не остаётся. Живые инструменты заставляют вибрировать Душу, электрические — тело!</p>
+    <div id="quintet-list"></div>
+    <div id="quintet-photos" class="quintet-grid"></div>
+  </section>
 
-function renderAll() {
-  const trackList = document.getElementById('track-list');
-  redemptationTracks.forEach(track => {
-    trackList.appendChild(createTrackElement(track, 'audio/previews/'));
-  });
-  
-  const quintetList = document.getElementById('quintet-list');
-  quintetTracks.forEach(track => {
-    quintetList.appendChild(createTrackElement(track, 'audio/quintet/'));
-  });
-  
-  const bandList = document.getElementById('band-list');
-  bandMembers.forEach(member => {
-    bandList.appendChild(createMemberCard(member));
-  });
-  
-  const quintetPhotos = document.getElementById('quintet-photos');
-  quintetMembers.forEach(member => {
-    quintetPhotos.appendChild(createMemberCard(member));
-  });
-}
+  <section id="band">
+    <h2>REDEMPTATION</h2>
+    <p class="section-subtitle">Основной состав. Восемь музыкантов. Одна история.</p>
+    <div id="band-list"></div>
+  </section>
 
-document.addEventListener('contextmenu', e => e.preventDefault());
-document.addEventListener('DOMContentLoaded', renderAll);
+  <section id="contact">
+    <h2>Связь</h2>
+    <p>Мы работаем с юридическими лицами и индивидуальными предпринимателями. Предоставляем полный пакет закрывающих документов. Все детали сотрудничества обсуждаются индивидуально при заключении договора.</p>
+    <p>Email: <a href="mailto:redemptation.official@gmail.com">redemptation.official@gmail.com</a></p>
+    <p>Boosty: <a href="https://boosty.to/REDEMPTATION" target="_blank">boosty.to/REDEMPTATION</a></p>
+  </section>
+
+  <footer>
+    <p>REDEMPTATION © 2026. Творческий коллектив. Работаем удалённо. Детали не комментируем.</p>
+  </footer>
+
+  <script src="songs.js"></script>
+</body>
+</html>
