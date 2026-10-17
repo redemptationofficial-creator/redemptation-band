@@ -26,7 +26,7 @@ const quintetTracks = [
   { title: "Над горизонтом", file: "j0k1l2.mp3" }
 ];
 
-// Массив состава группы
+// Основной состав
 const bandMembers = [
   { name: "Михаил Матвеев", role: "Основатель, гитара", img: "images/band/mikhail.jpg" },
   { name: "Michael Matthew", role: "Вокал", img: "images/band/michael.jpg" },
@@ -38,104 +38,156 @@ const bandMembers = [
   { name: "Артём «Тёмный» Лебедев", role: "Клавиши", img: "images/band/tyomny.jpg" }
 ];
 
+// Экспромт-квинтет
+const quintetMembers = [
+  { name: "Илья Матвеев", role: "Домра", img: "images/quintet/ilya.jpg" },
+  { name: "Андрей Демидов", role: "Балалайка", img: "images/quintet/demidov.jpg" },
+  { name: "Сергей Погурцев", role: "Баян", img: "images/quintet/pogurtsev.jpg" },
+  { name: "Константин Ильгин", role: "Гитара", img: "images/quintet/ilgin.jpg" },
+  { name: "Гай Давтян", role: "Контрабас", img: "images/quintet/davtyan.jpg" }
+];
+
+// Состояние плеера
 let currentAudio = null;
 let currentButton = null;
+let currentTracks = null;
+let currentButtons = null;
+let currentFolder = null;
+let currentIndex = -1;
 
-function createTrackElement(track, folder) {
-  const div = document.createElement('div');
-  div.className = 'track';
-  
-  const title = document.createElement('div');
-  title.className = 'track-title';
-  title.innerHTML = `<span>▶</span> ${track.title}`;
-  
-  const btn = document.createElement('button');
-  btn.className = 'play-btn';
-  btn.textContent = 'Слушать';
-  
-  btn.addEventListener('click', () => {
-    if (currentAudio) {
-      currentAudio.pause();
-      currentAudio = null;
-      if (currentButton) {
-        currentButton.textContent = 'Слушать';
-        currentButton.disabled = false;
-      }
-    }
-    
-    if (currentButton === btn) {
-      currentButton = null;
-      return;
-    }
-    
-    btn.textContent = 'Загрузка...';
-    btn.disabled = true;
-    
-    const audioUrl = folder + track.file;
-    
-    fetch(audioUrl)
-      .then(response => response.blob())
-      .then(blob => {
-        const blobUrl = URL.createObjectURL(blob);
-        const audio = new Audio(blobUrl);
-        
-        audio.addEventListener('ended', () => {
-          btn.textContent = 'Слушать';
-          btn.disabled = false;
-          currentAudio = null;
-          currentButton = null;
-        });
-        
-        audio.play();
-        currentAudio = audio;
-        currentButton = btn;
-        btn.textContent = 'Играет...';
-        btn.disabled = false;
-      })
-      .catch(err => {
-        console.error('Ошибка загрузки:', err);
-        btn.textContent = 'Ошибка';
-        btn.disabled = false;
+function playAt(index, tracks, buttons, folder) {
+  // Остановить текущий
+  if (currentAudio) {
+    currentAudio.pause();
+    currentAudio = null;
+  }
+  if (currentButton) {
+    currentButton.textContent = 'Слушать';
+    currentButton.disabled = false;
+  }
+
+  // Конец плейлиста
+  if (index >= tracks.length || index < 0) {
+    currentButton = null;
+    return;
+  }
+
+  const track = tracks[index];
+  const btn = buttons[index];
+
+  btn.textContent = 'Загрузка...';
+  btn.disabled = true;
+
+  fetch(folder + track.file)
+    .then(r => r.blob())
+    .then(blob => {
+      const audio = new Audio(URL.createObjectURL(blob));
+
+      audio.addEventListener('ended', () => {
+        // Автоплей следующего
+        playAt(index + 1, tracks, buttons, folder);
       });
-  });
-  
-  div.appendChild(title);
-  div.appendChild(btn);
-  return div;
+
+      audio.play();
+      currentAudio = audio;
+      currentButton = btn;
+      currentTracks = tracks;
+      currentButtons = buttons;
+      currentFolder = folder;
+      currentIndex = index;
+      btn.textContent = 'Играет...';
+      btn.disabled = false;
+    })
+    .catch(err => {
+      console.error('Ошибка загрузки:', err);
+      btn.textContent = 'Ошибка';
+      btn.disabled = false;
+    });
 }
 
-function createBandMember(member) {
+function renderTracks(tracks, folder, containerId) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+
+  const buttons = [];
+
+  tracks.forEach((track, index) => {
+    const div = document.createElement('div');
+    div.className = 'track';
+
+    const title = document.createElement('div');
+    title.className = 'track-title';
+    title.innerHTML = `<span>▶</span> ${track.title}`;
+
+    const btn = document.createElement('button');
+    btn.className = 'play-btn';
+    btn.textContent = 'Слушать';
+
+    btn.addEventListener('click', () => {
+      // Если играет этот трек — стоп
+      if (currentButton === btn && currentAudio) {
+        currentAudio.pause();
+        currentAudio = null;
+        currentButton = null;
+        btn.textContent = 'Слушать';
+        return;
+      }
+      // Иначе — играть с этого места
+      playAt(index, tracks, buttons, folder);
+    });
+
+    buttons.push(btn);
+    div.appendChild(title);
+    div.appendChild(btn);
+    container.appendChild(div);
+  });
+}
+
+function createMemberCard(member) {
   const div = document.createElement('div');
   div.className = 'band-member';
-  
+
   const img = document.createElement('img');
   img.src = member.img;
   img.alt = member.name;
-  
+
   const name = document.createElement('p');
   name.innerHTML = `<strong>${member.name}</strong><br>${member.role}`;
-  
+
   div.appendChild(img);
   div.appendChild(name);
   return div;
 }
 
 function renderAll() {
-  const trackList = document.getElementById('track-list');
-  redemptationTracks.forEach(track => {
-    trackList.appendChild(createTrackElement(track, 'audio/previews/'));
-  });
-  
-  const quintetList = document.getElementById('quintet-list');
-  quintetTracks.forEach(track => {
-    quintetList.appendChild(createTrackElement(track, 'audio/quintet/'));
-  });
-  
+  renderTracks(redemptationTracks, 'audio/previews/', 'track-list');
+  renderTracks(quintetTracks, 'audio/quintet/', 'quintet-list');
+
   const bandList = document.getElementById('band-list');
-  bandMembers.forEach(member => {
-    bandList.appendChild(createBandMember(member));
-  });
+  if (bandList) {
+    bandMembers.forEach(m => bandList.appendChild(createMemberCard(m)));
+  }
+
+  const quintetPhotos = document.getElementById('quintet-photos');
+  if (quintetPhotos) {
+    quintetMembers.forEach(m => quintetPhotos.appendChild(createMemberCard(m)));
+  }
 }
 
+// Остановить аудио при уходе со вкладки
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden && currentAudio) {
+    currentAudio.pause();
+    currentAudio = null;
+    if (currentButton) {
+      currentButton.textContent = 'Слушать';
+      currentButton = null;
+    }
+  }
+});
+
+// Защита от правой кнопки мыши
 document.addEventListener('contextmenu', e => e.preventDefault());
+
+// Инициализация
 document.addEventListener('DOMContentLoaded', renderAll);
