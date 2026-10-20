@@ -4,16 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>REDEMPTATION — визитка</title>
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       display: flex;
       align-items: center;
       justify-content: center;
       min-height: 100vh;
       padding: 20px;
+      background: #0a0a0c;
+      font-family: 'Montserrat', sans-serif;
     }
-
     .card {
       max-width: 480px;
       width: 100%;
@@ -24,80 +26,20 @@
       text-align: center;
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
     }
-
-    .card .logo {
-      max-width: 200px;
-      width: 100%;
-      margin-bottom: 20px;
-    }
-
-    .card h1 {
-      font-size: 1.8rem;
-      letter-spacing: 6px;
-      color: #d4af37;
-      margin-bottom: 10px;
-      text-transform: uppercase;
-    }
-
-    .card .subtitle {
-      font-size: 1rem;
-      color: #999;
-      font-style: italic;
-      margin-bottom: 25px;
-      line-height: 1.5;
-    }
-
-    .card .description {
-      color: #ccc;
-      font-size: 0.95rem;
-      line-height: 1.6;
-      margin-bottom: 30px;
-      text-align: left;
-    }
-
-    .card .links {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-bottom: 25px;
-    }
-
+    .card .logo { max-width: 200px; width: 100%; margin-bottom: 20px; }
+    .card h1 { font-size: 1.8rem; letter-spacing: 6px; color: #d4af37; margin-bottom: 10px; text-transform: uppercase; }
+    .card .subtitle { font-size: 1rem; color: #999; font-style: italic; margin-bottom: 25px; line-height: 1.5; }
+    .card .description { color: #ccc; font-size: 0.95rem; line-height: 1.6; margin-bottom: 30px; text-align: left; }
+    .card .links { display: flex; flex-direction: column; gap: 12px; margin-bottom: 25px; }
     .card .links a {
-      display: block;
-      padding: 14px 20px;
-      background: #0a0a0c;
-      color: #d4af37;
-      text-decoration: none;
-      border-radius: 6px;
-      font-weight: bold;
-      font-size: 0.95rem;
-      letter-spacing: 1px;
-      transition: background 0.3s, transform 0.2s;
-      border: 1px solid #2a2a2e;
+      display: block; padding: 14px 20px; background: #0a0a0c; color: #d4af37;
+      text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 0.95rem;
+      letter-spacing: 1px; transition: background 0.3s, transform 0.2s; border: 1px solid #2a2a2e;
     }
-
-    .card .links a:hover {
-      background: #1c1c22;
-      transform: translateY(-2px);
-    }
-
-    .card .links a.primary {
-      background: #d4af37;
-      color: #0a0a0c;
-      border: none;
-    }
-
-    .card .links a.primary:hover {
-      background: #e6c44a;
-    }
-
-    .card .footer-note {
-      color: #555;
-      font-size: 0.75rem;
-      font-style: italic;
-      line-height: 1.5;
-      margin-top: 20px;
-    }
+    .card .links a:hover { background: #1c1c22; transform: translateY(-2px); }
+    .card .links a.primary { background: #d4af37; color: #0a0a0c; border: none; }
+    .card .links a.primary:hover { background: #e6c44a; }
+    .card .footer-note { color: #555; font-size: 0.75rem; font-style: italic; line-height: 1.5; margin-top: 20px; }
   </style>
 </head>
 <body>
@@ -105,22 +47,66 @@
   <div class="card">
     <img src="images/logo.png" alt="REDEMPTATION" class="logo">
     <h1>REDEMPTATION</h1>
-    <p class="subtitle">Мы создаём музыкальные посвящения</p>
-    <p class="description">
+    <p class="subtitle" id="t-subtitle">Мы создаём музыкальные посвящения</p>
+    <p class="description" id="t-desc">
       Творческий коллектив, который превращает реальные человеческие истории в музыку. Каждая песня — это чья-то судьба: боль, любовь, надежда, возрождение.
     </p>
 
     <div class="links">
-      <a href="https://redemptationofficial-creator.github.io/redemptation-band/" class="primary" target="_blank">Открыть сайт</a>
-      <a href="https://boosty.to/REDEMPTATION" target="_blank">Boosty — альбом и посвящения</a>
-      <a href="https://youtu.be/AnmG7BF9j1s" target="_blank">YouTube — клип «Ту-144»</a>
-      <a href="mailto:redemptation.official@gmail.com">Написать нам</a>
+      <a href="https://redemptationofficial-creator.github.io/redemptation-band/" class="primary" target="_blank" id="t-btn-site">Открыть сайт</a>
+      <a href="https://boosty.to/REDEMPTATION" target="_blank" id="t-btn-boosty">Boosty — альбом и посвящения</a>
+      <a href="https://youtu.be/AnmG7BF9j1s" target="_blank" id="t-btn-yt">YouTube — клип «Ту-144»</a>
+      <a href="mailto:redemptation.official@gmail.com" id="t-btn-mail">Написать нам</a>
     </div>
 
-    <p class="footer-note">
+    <p class="footer-note" id="t-footer">
       Творческий коллектив. Работаем удалённо. Детали не комментируем.
     </p>
   </div>
+
+  <script>
+    const lang = (document.documentElement.lang || 'ru').toLowerCase();
+    
+    const texts = {
+      ru: {
+        subtitle: "Мы создаём музыкальные посвящения",
+        desc: "Творческий коллектив, который превращает реальные человеческие истории в музыку. Каждая песня — это чья-то судьба: боль, любовь, надежда, возрождение.",
+        btnSite: "Открыть сайт",
+        btnBoosty: "Boosty — альбом и посвящения",
+        btnYt: "YouTube — клип «Ту-144»",
+        btnMail: "Написать нам",
+        footer: "Творческий коллектив. Работаем удалённо. Детали не комментируем."
+      },
+      en: {
+        subtitle: "We create musical dedications",
+        desc: "A creative collective that turns real human stories into music. Each song is someone's destiny: pain, love, hope, rebirth.",
+        btnSite: "Open website",
+        btnBoosty: "Boosty — album & dedications",
+        btnYt: "YouTube — Tu-144 clip",
+        btnMail: "Write to us",
+        footer: "Creative collective. We work remotely. Details are not commented on."
+      },
+      zh: {
+        subtitle: "我们创作音乐献礼",
+        desc: "一个将真实人类故事转化为音乐的创意团队。每一首歌都是某个人的命运：痛苦、爱、希望、重生。",
+        btnSite: "打开网站",
+        btnBoosty: "Boosty — 专辑与献礼",
+        btnYt: "YouTube — 图-144 视频",
+        btnMail: "写信给我们",
+        footer: "创意团队。远程工作。细节不予置评。"
+      }
+    };
+
+    const t = lang.startsWith('en') ? texts.en : lang.startsWith('zh') ? texts.zh : texts.ru;
+    
+    document.getElementById('t-subtitle').innerText = t.subtitle;
+    document.getElementById('t-desc').innerText = t.desc;
+    document.getElementById('t-btn-site').innerText = t.btnSite;
+    document.getElementById('t-btn-boosty').innerText = t.btnBoosty;
+    document.getElementById('t-btn-yt').innerText = t.btnYt;
+    document.getElementById('t-btn-mail').innerText = t.btnMail;
+    document.getElementById('t-footer').innerText = t.footer;
+  </script>
 
 </body>
 </html>
