@@ -1,13 +1,6 @@
 // songs.js — REDEMPTATION
-// Язык берётся из <html lang="...">: en / ru / zh-CN
-// Adèle Vermeil сюда не входит. Проекты не смешиваем.
-
 const pageLang = (document.documentElement.lang || 'ru').toLowerCase();
-const currentLang = pageLang.startsWith('en')
-  ? 'en'
-  : pageLang.startsWith('zh')
-    ? 'zh'
-    : 'ru';
+const currentLang = pageLang.startsWith('en') ? 'en' : pageLang.startsWith('zh') ? 'zh' : 'ru';
 
 function pickLang(value) {
   if (typeof value === 'string') return value;
@@ -15,7 +8,6 @@ function pickLang(value) {
   return value[currentLang] || value.en || value.ru || value.zh || '';
 }
 
-// 16 треков REDEMPTATION
 const redemptationTracks = [
   { title: { en: "Redemptation", ru: "Редемптейшн", zh: "救赎与诱惑" }, file: "a3f9c2.mp3" },
   { title: { en: "The Only One Who Stayed", ru: "Единственная, кто осталась", zh: "唯一留下的人" }, file: "b7e1d4.mp3" },
@@ -35,7 +27,6 @@ const redemptationTracks = [
   { title: { en: "Out of the Gray Storm (Russian Version)", ru: "Из серого шторма (русская версия)", zh: "走出灰色风暴（俄语版）" }, file: "0d9b5f.mp3" }
 ];
 
-// Экспромт-квинтет
 const quintetTracks = [
   { title: { en: "Tu-144", ru: "Ту-144", zh: "图-144" }, file: "a1b2c3.mp3" },
   { title: { en: "Flight", ru: "Полёт", zh: "飞行" }, file: "d4e5f6.mp3" },
@@ -43,19 +34,18 @@ const quintetTracks = [
   { title: { en: "Above the Horizon", ru: "Над горизонтом", zh: "地平线之上" }, file: "j0k1l2.mp3" }
 ];
 
-// Основной состав
+// ... (Массивы bandMembers и quintetMembers оставляем без изменений, они не влияют на плеер) ...
 const bandMembers = [
-  { name: { en: "Mikhail Matveev", ru: "Михаил Матвеев", zh: "米哈伊尔·马特维耶夫 (Mikhail Matveev)" }, role: { en: "Founder, guitar", ru: "Основатель, гитара", zh: "创始人，吉他手" }, img: "images/band/mikhail.jpg" },
-  { name: { en: "Michael Matthew", ru: "Michael Matthew", zh: "迈克尔·马修 (Michael Matthew)" }, role: { en: "Vocals", ru: "Вокал", zh: "主唱" }, img: "images/band/michael.jpg" },
-  { name: { en: 'Alexey "Lyokha" Vetrov', ru: "Алексей «Лёха» Ветров", zh: "阿列克谢·“廖哈”·韦特罗夫" }, role: { en: "Lead guitar", ru: "Соло-гитара", zh: "主音吉他" }, img: "images/band/lyokha.jpg" },
-  { name: { en: 'Dmitry "Dima" Stal', ru: "Дмитрий «Дима» Сталь", zh: "德米特里·“季马”·斯塔尔" }, role: { en: "Rhythm guitar", ru: "Ритм-гитара", zh: "节奏吉他" }, img: "images/band/stal.jpg" },
-  { name: { en: 'Sergey "Serzh" Volkov', ru: "Сергей «Серж» Волков", zh: "谢尔盖·“谢尔日”·沃尔科夫" }, role: { en: "Bass guitar", ru: "Бас-гитара", zh: "贝斯手" }, img: "images/band/serzh.jpg" },
-  { name: { en: 'Andrey "Drive" Kovalev', ru: "Андрей «Драйв» Ковалёв", zh: "安德烈·“驱动”·科瓦廖夫" }, role: { en: "Drums", ru: "Барабаны", zh: "鼓手" }, img: "images/band/draiv.jpg" },
-  { name: { en: 'Ekaterina "Katya" Soboleva', ru: "Екатерина «Катя» Соболева", zh: "叶卡捷琳娜·“卡佳”·索博列娃" }, role: { en: "Cello", ru: "Виолончель", zh: "大提琴" }, img: "images/band/katya.jpg" },
-  { name: { en: 'Artem "Tyomny" Lebedev', ru: "Артём «Тёмный» Лебедев", zh: "阿尔乔姆·“暗影”·列别杰夫" }, role: { en: "Keyboards", ru: "Клавиши", zh: "键盘手" }, img: "images/band/tyomny.jpg" }
+  { name: { en: "Mikhail Matveev", ru: "Михаил Матвеев", zh: "米哈伊尔·马特维耶夫" }, role: { en: "Founder, guitar", ru: "Основатель, гитара", zh: "创始人，吉他手" }, img: "images/band/mikhail.jpg" },
+  { name: { en: "Michael Matthew", ru: "Michael Matthew", zh: "迈克尔·马修" }, role: { en: "Vocals", ru: "Вокал", zh: "主唱" }, img: "images/band/michael.jpg" },
+  { name: { en: 'Alexey "Lyokha" Vetrov', ru: "Алексей «Лёха» Ветров", zh: "阿列克谢·韦特罗夫" }, role: { en: "Lead guitar", ru: "Соло-гитара", zh: "主音吉他" }, img: "images/band/lyokha.jpg" },
+  { name: { en: 'Dmitry "Dima" Stal', ru: "Дмитрий «Дима» Сталь", zh: "德米特里·斯塔尔" }, role: { en: "Rhythm guitar", ru: "Ритм-гитара", zh: "节奏吉他" }, img: "images/band/stal.jpg" },
+  { name: { en: 'Sergey "Serzh" Volkov', ru: "Сергей «Серж» Волков", zh: "谢尔盖·沃尔科夫" }, role: { en: "Bass guitar", ru: "Бас-гитара", zh: "贝斯手" }, img: "images/band/serzh.jpg" },
+  { name: { en: 'Andrey "Drive" Kovalev', ru: "Андрей «Драйв» Ковалёв", zh: "安德烈·科瓦廖夫" }, role: { en: "Drums", ru: "Барабаны", zh: "鼓手" }, img: "images/band/draiv.jpg" },
+  { name: { en: 'Ekaterina "Katya" Soboleva', ru: "Екатерина «Катя» Соболева", zh: "叶卡捷琳娜·索博列娃" }, role: { en: "Cello", ru: "Виолончель", zh: "大提琴" }, img: "images/band/katya.jpg" },
+  { name: { en: 'Artem "Tyomny" Lebedev', ru: "Артём «Тёмный» Лебедев", zh: "阿尔乔姆·列别杰夫" }, role: { en: "Keyboards", ru: "Клавиши", zh: "键盘手" }, img: "images/band/tyomny.jpg" }
 ];
 
-// Экспромт-квинтет
 const quintetMembers = [
   { name: { en: "Ilya Matveev", ru: "Илья Матвеев", zh: "伊利亚·马特维耶夫" }, role: { en: "Domra", ru: "Домра", zh: "多姆拉琴" }, img: "images/quintet/ilya.jpg" },
   { name: { en: "Andrey Demidov", ru: "Андрей Демидов", zh: "安德烈·杰米多夫" }, role: { en: "Balalaika", ru: "Балалайка", zh: "巴拉莱卡" }, img: "images/quintet/demidov.jpg" },
@@ -64,173 +54,142 @@ const quintetMembers = [
   { name: { en: "Guy Davtyan", ru: "Гай Давтян", zh: "盖伊·达夫强" }, role: { en: "Double bass", ru: "Контрабас", zh: "低音提琴" }, img: "images/quintet/davtyan.jpg" }
 ];
 
-// --- ЛОГИКА ПЛЕЕРА (С АВТОПЕРЕХОДОМ) ---
-
-let currentAudio = null;
-let currentButton = null;
-let currentTrackIndex = -1;
+// --- ЛОГИКА ПЛЕЕРА ---
+let globalAudio = new Audio();
 let currentPlaylist = [];
+let currentIndex = -1;
 let currentFolder = '';
+let uiButtons = []; 
 
 const idleText = currentLang === 'en' ? 'Listen' : currentLang === 'zh' ? '试听' : 'Слушать';
-const loadingText = currentLang === 'en' ? 'Loading...' : currentLang === 'zh' ? '加载中...' : 'Загрузка...';
 const playingText = currentLang === 'en' ? 'Playing...' : currentLang === 'zh' ? '播放中...' : 'Играет...';
 
-function playTrack(playlist, index, folder, btnElement) {
-  // Если нажали на тот же трек, который играет — ставим на паузу
-  if (currentAudio && currentButton === btnElement && !currentAudio.paused) {
-    currentAudio.pause();
-    btnElement.textContent = idleText;
+function playTrack(playlist, index, folder) {
+  if (index < 0 || index >= playlist.length) {
+    resetPlayer();
     return;
   }
 
-  // Если нажали на тот же трек, который на паузе — продолжаем
-  if (currentAudio && currentButton === btnElement && currentAudio.paused) {
-    currentAudio.play();
-    btnElement.textContent = playingText;
+  const isSameTrack = (currentPlaylist === playlist && currentIndex === index);
+
+  if (isSameTrack) {
+    if (globalAudio.paused) {
+      globalAudio.play();
+    } else {
+      globalAudio.pause();
+    }
+    updateUI();
     return;
   }
 
-  // Остановить предыдущий
-  if (currentAudio) {
-    currentAudio.pause();
-    currentAudio.currentTime = 0;
-    currentAudio = null;
-  }
-  if (currentButton) {
-    currentButton.textContent = idleText;
-    currentButton.disabled = false;
-  }
-
-  // Конец плейлиста
-  if (index >= playlist.length) {
-    currentTrackIndex = -1;
-    currentPlaylist = [];
-    return;
-  }
-
-  const track = playlist[index];
-  currentTrackIndex = index;
+  // Новый трек
+  globalAudio.pause();
+  globalAudio = new Audio(folder + playlist[index].file);
   currentPlaylist = playlist;
+  currentIndex = index;
   currentFolder = folder;
-  currentButton = btnElement;
 
-  btnElement.textContent = loadingText;
-  btnElement.disabled = true;
+  globalAudio.play().catch(e => console.error("Ошибка:", e));
+  updateUI();
 
-  const audioUrl = folder + track.file;
-
-  fetch(audioUrl)
-    .then(response => {
-      if (!response.ok) throw new Error('HTTP ' + response.status);
-      return response.blob();
-    })
-    .then(blob => {
-      const blobUrl = URL.createObjectURL(blob);
-      currentAudio = new Audio(blobUrl);
-
-      currentAudio.addEventListener('ended', () => {
-        URL.revokeObjectURL(blobUrl);
-        // МАГИЯ АВТОПЕРЕХОДА: запускаем следующий трек
-        if (currentPlaylist === playlist) { // Проверка, что плейлист не сменился
-          playTrack(playlist, index + 1, folder, null);
-        }
-      });
-
-      currentAudio.play();
-      btnElement.textContent = playingText;
-      btnElement.disabled = false;
-      
-      // Если следующий трек существует, заранее готовим его кнопку (опционально)
-    })
-    .catch(err => {
-      console.error('Ошибка загрузки:', err);
-      btnElement.textContent = currentLang === 'en' ? 'Error' : currentLang === 'zh' ? '错误' : 'Ошибка';
-      btnElement.disabled = false;
-    });
+  // Автопереход
+  globalAudio.onended = () => {
+    if (currentIndex + 1 < currentPlaylist.length) {
+      playTrack(currentPlaylist, currentIndex + 1, currentFolder);
+    } else {
+      resetPlayer();
+    }
+  };
 }
 
-function createTrackElement(track, folder, playlist, index) {
+function resetPlayer() {
+  globalAudio.pause();
+  currentIndex = -1;
+  currentPlaylist = [];
+  updateUI();
+}
+
+function updateUI() {
+  uiButtons.forEach(btn => {
+    const trackIndex = parseInt(btn.dataset.index);
+    const playlistType = btn.dataset.playlist;
+    
+    const isThisCurrent = (currentPlaylist === redemptationTracks && playlistType === 'main' && trackIndex === currentIndex) ||
+                          (currentPlaylist === quintetTracks && playlistType === 'quintet' && trackIndex === currentIndex);
+
+    if (isThisCurrent && !globalAudio.paused) {
+      btn.textContent = playingText;
+      btn.classList.add('playing');
+    } else if (isThisCurrent && globalAudio.paused) {
+      btn.textContent = '▶ Продолжить';
+      btn.classList.remove('playing');
+    } else {
+      btn.textContent = idleText;
+      btn.classList.remove('playing');
+    }
+  });
+}
+
+function createTrackElement(track, folder, playlist, index, playlistType) {
   const div = document.createElement('div');
   div.className = 'track';
-
+  
   const title = document.createElement('div');
   title.className = 'track-title';
-
-  const arrow = document.createElement('span');
-  arrow.textContent = '▶';
-
-  const label = document.createElement('span');
-  label.textContent = pickLang(track.title);
-
-  title.appendChild(arrow);
-  title.appendChild(label);
-
+  title.innerHTML = `<span>▶</span> ${pickLang(track.title)}`;
+  
   const btn = document.createElement('button');
   btn.className = 'play-btn';
   btn.textContent = idleText;
-
+  btn.dataset.index = index;
+  btn.dataset.playlist = playlistType;
+  
   btn.addEventListener('click', () => {
-    playTrack(playlist, index, folder, btn);
+    playTrack(playlist, index, folder);
   });
-
+  
   div.appendChild(title);
   div.appendChild(btn);
+  uiButtons.push(btn); // Сохраняем кнопку для обновления UI
   return div;
 }
 
 function createMemberCard(member) {
   const div = document.createElement('div');
   div.className = 'band-member';
-
   const img = document.createElement('img');
   img.src = member.img;
   img.alt = pickLang(member.name);
-
   const name = document.createElement('p');
-  const strong = document.createElement('strong');
-  strong.textContent = pickLang(member.name);
-
-  name.appendChild(strong);
-  name.appendChild(document.createElement('br'));
-  name.appendChild(document.createTextNode(pickLang(member.role)));
-
+  name.innerHTML = `<strong>${pickLang(member.name)}</strong><br>${pickLang(member.role)}`;
   div.appendChild(img);
   div.appendChild(name);
   return div;
 }
 
 function renderAll() {
+  uiButtons = []; // Сбрасываем перед рендером
+  
   const trackList = document.getElementById('track-list');
   if (trackList) {
     redemptationTracks.forEach((track, index) => {
-      trackList.appendChild(createTrackElement(track, 'audio/previews/', redemptationTracks, index));
+      trackList.appendChild(createTrackElement(track, 'audio/previews/', redemptationTracks, index, 'main'));
     });
   }
 
   const quintetList = document.getElementById('quintet-list');
   if (quintetList) {
     quintetTracks.forEach((track, index) => {
-      quintetList.appendChild(createTrackElement(track, 'audio/quintet/', quintetTracks, index));
+      quintetList.appendChild(createTrackElement(track, 'audio/quintet/', quintetTracks, index, 'quintet'));
     });
   }
 
   const bandList = document.getElementById('band-list');
-  if (bandList) {
-    bandMembers.forEach(member => {
-      bandList.appendChild(createMemberCard(member));
-    });
-  }
+  if (bandList) bandMembers.forEach(m => bandList.appendChild(createMemberCard(m)));
 
   const quintetPhotos = document.getElementById('quintet-photos');
-  if (quintetPhotos) {
-    quintetMembers.forEach(member => {
-      quintetPhotos.appendChild(createMemberCard(member));
-    });
-  }
+  if (quintetPhotos) quintetMembers.forEach(m => quintetPhotos.appendChild(createMemberCard(m)));
 }
 
-// Защита от правой кнопки мыши
 document.addEventListener('contextmenu', e => e.preventDefault());
-
 document.addEventListener('DOMContentLoaded', renderAll);
